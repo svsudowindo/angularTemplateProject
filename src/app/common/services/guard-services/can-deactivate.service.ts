@@ -16,7 +16,7 @@ export interface CanComponentDeactivate {
 export class CanDeactivateService implements CanDeactivate<CanComponentDeactivate> {
 
   private canExit = true;
-  // used to decide weather to deactivate or not
+  // Decide's weather to deactivate or not by returning true or false
   canDeactivate(component: CanComponentDeactivate,
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {

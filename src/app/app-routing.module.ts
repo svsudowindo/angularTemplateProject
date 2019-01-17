@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './common/layouts/auth-layout/auth-layout.component';
 import { AdminLayoutComponent } from './common/layouts/admin-layout/admin-layout.component';
-import { CanActivateService } from './common/services/can-activate.service';
+import { CanActivateService } from './common/services/guard-services/can-activate.service';
+import { CanLoadService } from './common/services/guard-services/can-load.service';
+import { CanActivateChildService } from './common/services/guard-services/can-activate-child.service';
 
 const routes: Routes = [
   {
@@ -30,10 +32,12 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     canActivate: [CanActivateService],
+    canActivateChild: [ CanActivateChildService ], // Use when we want to make a disission to load sub modules or not
     children: [
       {
         path: 'dashboard',
-        loadChildren: './views/admin-views/dashboard/dashboard.module#DashboardModule'
+        loadChildren: './views/admin-views/dashboard/dashboard.module#DashboardModule',
+        canLoad: [CanLoadService] // Use when we want to make a disission to load sub modules or not
       }
     ]
   },
