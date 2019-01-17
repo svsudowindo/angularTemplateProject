@@ -14,4 +14,6 @@ import {PredefinedModule} from './predefined/predefined.module';
     PredefinedModule
   ]
 })
+
+// Import this Module in all submodules for reusablility
 export class SharedModule { }
