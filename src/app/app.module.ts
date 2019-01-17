@@ -1,11 +1,15 @@
+// Angular Moudles
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
+
+// custom components
 import { AppComponent } from './app.component';
 import { AuthLayoutComponent } from './common/layouts/auth-layout/auth-layout.component';
 import { AdminLayoutComponent } from './common/layouts/admin-layout/admin-layout.component';
-import { CanActivateService } from './common/services/can-activate.service';
+
+// Custom Modules
+import {SharedModule} from './common/modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +19,10 @@ import { CanActivateService } from './common/services/can-activate.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
-  providers: [CanActivateService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
