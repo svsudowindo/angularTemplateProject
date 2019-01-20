@@ -1,15 +1,18 @@
 // Angular Moudles
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
+import { Logger, Options as LoggerOptions } from 'angular2-logger/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 // custom components
 import { AppComponent } from './app.component';
-import { AuthLayoutComponent } from './common/layouts/auth-layout/auth-layout.component';
-import { AdminLayoutComponent } from './common/layouts/admin-layout/admin-layout.component';
+import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
+import { AdminLayoutComponent } from './shared/layouts/admin-layout/admin-layout.component';
 
 // Custom Modules
-import {SharedModule} from './common/modules/shared.module';
+import {SharedModule} from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -18,11 +21,13 @@ import {SharedModule} from './common/modules/shared.module';
     AdminLayoutComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule
+  AppRoutingModule,
+    BrowserAnimationsModule,
+    SharedModule,
+    CommonModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule { }

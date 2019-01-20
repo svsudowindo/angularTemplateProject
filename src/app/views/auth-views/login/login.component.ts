@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   // once successfull login make can activate service to true
-  constructor() { }
+  constructor(public route: Router) { }
 
   ngOnInit() {
   }
 
+  register() {
+    this.route.navigate(['registration', 'register']);
+  }
 }
