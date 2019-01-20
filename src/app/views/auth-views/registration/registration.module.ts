@@ -24,12 +24,14 @@ import {
 } from '@angular/material';
 
 import { RegistrationRoutingModule } from './registration-routing.module';
-import { RegisterComponent } from './register/register.component';
+import { RegistrationComponent } from './registration.component';
 import { SharedModule } from '../../../shared/shared.module';
 
 
 @NgModule({
-  declarations: [RegisterComponent],
+  declarations: [
+    RegistrationComponent
+  ],
   imports: [
     RegistrationRoutingModule,
     MatInputModule,

@@ -1,15 +1,15 @@
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl } from '@angular/forms';
-import { BaseClass } from './../../../../shared/services/common/baseClass';
-import { Registration } from './../registration.model';
-import { VALIDATION_PATTERNS } from '../../../../shared/constants/validation-patterns';
+import { BaseClass } from '../../../shared/services/common/baseClass';
+import { Registration } from './registration.model';
+import { VALIDATION_PATTERNS } from '../../../shared/constants/validation-patterns';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss']
 })
-export class RegisterComponent extends BaseClass implements OnInit {
+export class RegistrationComponent extends BaseClass implements OnInit {
 
   @ViewChild('addUserNgForm') addUserNgForm: FormGroupDirective;
   public registerationForm: FormGroup;
