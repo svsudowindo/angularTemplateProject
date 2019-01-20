@@ -13,7 +13,7 @@ export class TrimOnBlurDirective {
 
   @HostListener('blur', ['$event.target', '$event.target.value'])
   onBlur(el: any, value: string): void {
-    if ('function' === typeof value.trim && value.trim() !== value) {
+    if (value !== undefined && 'function' === typeof value.trim && value.trim() !== value) {
       el.value = value.trim();
       this.dispatchEvent(el, 'input');
       this.dispatchEvent(el, 'blur'); // in case updateOn is set to blur

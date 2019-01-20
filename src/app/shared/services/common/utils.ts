@@ -1,4 +1,3 @@
-import AppEnums from './enums';
 import { environment } from '../../../../environments/environment';
 
 export default class Utils {

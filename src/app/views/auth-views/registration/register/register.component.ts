@@ -1,8 +1,8 @@
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl } from '@angular/forms';
 import { BaseClass } from './../../../../shared/services/common/baseClass';
-import AppEnums from './../../../../shared/services/common/enums';
 import { Registration } from './../registration.model';
+import { VALIDATION_PATTERNS } from '../../../../shared/constants/validation-patterns';
 
 @Component({
   selector: 'app-register',
@@ -67,7 +67,7 @@ export class RegisterComponent extends BaseClass implements OnInit {
       ])),
       email: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern(AppEnums.VALIDATION_PATTERNS.EMAIL)
+        Validators.pattern(VALIDATION_PATTERNS.EMAIL)
       ])),
       doj: new FormControl('', Validators.compose([
         Validators.required
@@ -80,7 +80,7 @@ export class RegisterComponent extends BaseClass implements OnInit {
       role: new FormControl(),
       phone: new FormControl('', Validators.compose([
         Validators.minLength(10),
-        Validators.pattern(AppEnums.VALIDATION_PATTERNS.POSITIVE_INTEGER),
+        Validators.pattern(VALIDATION_PATTERNS.POSITIVE_INTEGER),
         Validators.maxLength(10),
         Validators.minLength(10),
         this.phoneNumberValidator
@@ -112,7 +112,7 @@ export class RegisterComponent extends BaseClass implements OnInit {
 
   phoneNumberValidator(control: AbstractControl): { [key: string]: boolean } | null {
 
-    if (control.value.trim() !== undefined && (isNaN(control.value.trim()) || control.value.trim() < 1)) {
+    if (control.value !== undefined && control.value.trim() !== undefined && (isNaN(control.value.trim()) || control.value.trim() < 1)) {
 
       return { 'phoneNumber': true };
     }
