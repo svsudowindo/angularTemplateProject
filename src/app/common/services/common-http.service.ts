@@ -21,7 +21,6 @@ export class CommonHttpService {
     // @path Request URL
     public get(path, params: HttpParams = new HttpParams()) {
         const requestUrl = this.base_url + path;
-        console.log(requestUrl);
         return this.http.get(requestUrl, {
             params: params
         }).pipe(
@@ -45,8 +44,6 @@ export class CommonHttpService {
         let errorMessage = errors['default'].message;
         if (errors.hasOwnProperty(error.status)) {
             errorMessage = errors[error.status].message;
-        } else {
-            errorMessage = errors['default'].message;
         }
         return throwError(errorMessage);
     }
