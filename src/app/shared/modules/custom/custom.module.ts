@@ -9,7 +9,7 @@ import { InputTrimModule } from 'ng2-trim-directive';
     TrimOnBlurDirective
   ],
   imports: [
-    InputTrimModule
+    InputTrimModule,
   ],
   exports: [
     TrimOnBlurDirective,
