@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Custom Modules
-import {PredefinedModule} from './predefined/predefined.module';
+import {PredefinedModule} from './modules/predefined/predefined.module';
 @NgModule({
   declarations: [],
   imports: [

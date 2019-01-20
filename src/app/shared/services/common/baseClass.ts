@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 export class BaseClass implements OnInit {
 
   private basePage: any;
-  public pageLoaded: boolean = false;
+  public pageLoaded = false;
   private globalVariablesForBaseClass: GlobalVariables;
   private routerForBaseClass: Router;
 
@@ -15,7 +15,7 @@ export class BaseClass implements OnInit {
     this.globalVariablesForBaseClass = injector.get(GlobalVariables);
     this.routerForBaseClass = injector.get(Router);
     this.pageLoaded = false;
-  };
+  }
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -23,19 +23,18 @@ export class BaseClass implements OnInit {
 
   setPage(page) {
     this.basePage = page;
-  };
+  }
 
   isValidInput(input) {
     return Utils.isValidInput(input);
-  };
+  }
 
   goToPage(pageName) {
     this.routerForBaseClass.navigateByUrl(pageName);
-  };
-  
+  }
 
   getErrorMessage(formObject, validation_messages, validation_item, controlName): string {
-    for (let i: number = 0; i < validation_messages[validation_item].length; i++) {
+    for (let i = 0; i < validation_messages[validation_item].length; i++) {
       if (formObject.get(controlName).hasError(validation_messages[validation_item][i].type)) {
         if (Utils.isValidInput(validation_messages[validation_item][i].inputs)) {
           return validation_messages[validation_item][i].message;
@@ -44,10 +43,9 @@ export class BaseClass implements OnInit {
         }
       }
     }
-    return "";
+    return '';
   }
 
-  
   findInvalidControls(formObject) {
     const invalid = [];
     const controls = formObject.controls;
@@ -56,6 +54,6 @@ export class BaseClass implements OnInit {
         invalid.push(name);
       }
     }
-    Utils.log("Invalid Controls: " + Utils.stringify(invalid));
+    Utils.log('Invalid Controls: ' + Utils.stringify(invalid));
   }
 }

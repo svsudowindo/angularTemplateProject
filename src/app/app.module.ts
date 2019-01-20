@@ -6,21 +6,21 @@ import { Logger, Options as LoggerOptions } from 'angular2-logger/core';
 
 // custom components
 import { AppComponent } from './app.component';
-import { AuthLayoutComponent } from './common/layouts/auth-layout/auth-layout.component';
-import { AdminLayoutComponent } from './common/layouts/admin-layout/admin-layout.component';
+import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
+import { AdminLayoutComponent } from './shared/layouts/admin-layout/admin-layout.component';
 
 // Custom Modules
-import {SharedModule} from './common/modules/shared.module';
+import {SharedModule} from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { environment } from './../environments/environment';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TrimOnBlurDirective } from './common/directives/ng-trim.directive';
+import { TrimOnBlurDirective } from './shared/directives/ng-trim.directive';
 import { InputTrimModule } from 'ng2-trim-directive';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { GlobalVariables } from './common/services/common/globalVariables';
+import { GlobalVariables } from './shared/services/common/globalVariables';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,6 @@ import { GlobalVariables } from './common/services/common/globalVariables';
     AuthLayoutComponent,
     AdminLayoutComponent,
     TrimOnBlurDirective
-    
   ],
   imports: [
     FlexLayoutModule,
@@ -41,8 +40,7 @@ import { GlobalVariables } from './common/services/common/globalVariables';
     BrowserAnimationsModule,
     InputTrimModule
   ],
-  providers: [GlobalVariables
-  ],
+  providers: [GlobalVariables],
   bootstrap: [AppComponent],
   exports: [TrimOnBlurDirective]
 })

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthLayoutComponent } from './common/layouts/auth-layout/auth-layout.component';
-import { AdminLayoutComponent } from './common/layouts/admin-layout/admin-layout.component';
-import { CanActivateService } from './common/services/guard-services/can-activate.service';
-import { CanLoadService } from './common/services/guard-services/can-load.service';
-import { CanActivateChildService } from './common/services/guard-services/can-activate-child.service';
+import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
+import { AdminLayoutComponent } from './shared/layouts/admin-layout/admin-layout.component';
+import { CanActivateService } from './shared/services/guard-services/can-activate.service';
+import { CanLoadService } from './shared/services/guard-services/can-load.service';
+import { CanActivateChildService } from './shared/services/guard-services/can-activate-child.service';
 
 const routes: Routes = [
   {

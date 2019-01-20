@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl } from '@angular/forms';
-import { BaseClass } from './../../../../common/services/common/baseClass';
-import AppEnums from './../../../../common/services/common/enums';
+import { BaseClass } from './../../../../shared/services/common/baseClass';
+import AppEnums from './../../../../shared/services/common/enums';
 import { Registration } from './../registration.model';
 
 @Component({
@@ -17,7 +17,7 @@ export class RegisterComponent extends BaseClass implements OnInit {
   public successMessageStatus: string;
   public errorMessageStatus: string;
   public genderData = ['Male', 'Female'];
-  
+
 
   public validation_messages = {
     'firstname': [
@@ -55,13 +55,13 @@ export class RegisterComponent extends BaseClass implements OnInit {
 
   constructor(public injector: Injector) {
     super(injector);
-    
+
   }
 
   ngOnInit() {
     this.registerationForm = new FormGroup({
       firstname: new FormControl('', Validators.compose([
-        Validators.required, this.noWhitespaceValidator, Validators.pattern("^[A-Za-z' ']*$"),
+        Validators.required, this.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
         Validators.maxLength(20),
         Validators.minLength(2)
       ])),
@@ -73,7 +73,7 @@ export class RegisterComponent extends BaseClass implements OnInit {
         Validators.required
       ])),
       lastname: new FormControl('', Validators.compose([
-        Validators.required, this.noWhitespaceValidator, Validators.pattern("^[A-Za-z' ']*$"),
+        Validators.required, this.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
         Validators.maxLength(20),
         Validators.minLength(3)
       ])),
@@ -89,25 +89,25 @@ export class RegisterComponent extends BaseClass implements OnInit {
         Validators.required
       ])),
       managerid: new FormControl()
-    })
+    });
 
   }
 
 
   onsubmit() {
     if (this.registerationForm.valid) {
-          
 
-          //this.registerationForm.reset();
-          //this.addUserNgForm.resetForm();
-     
+
+          // this.registerationForm.reset();
+          // this.addUserNgForm.resetForm();
+
     }
   }
-  
+
   public noWhitespaceValidator(control: FormControl) {
-    let isWhitespace = (control.value || '').trim().length == 0;
-    let isValid = !isWhitespace;
-    return isValid ? null : { 'whitespace': true }
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
   }
 
   phoneNumberValidator(control: AbstractControl): { [key: string]: boolean } | null {
@@ -118,9 +118,4 @@ export class RegisterComponent extends BaseClass implements OnInit {
     }
     return null;
   }
-
- 
-
-
-
 }
