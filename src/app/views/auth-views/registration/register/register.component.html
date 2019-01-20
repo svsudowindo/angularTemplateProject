@@ -1,0 +1,96 @@
+
+<form [formGroup]="registerationForm" #registerationNgForm="ngForm" novalidate (ngSubmit)="onsubmit()" autocomplete="off">
+  <mat-card>
+    <mat-card-content>
+      <div fxLayout="row" class="m-b-10">
+        <div fxFlex="50" class="p-r-12">
+          <mat-form-field class="full-width">
+            <input matInput
+                   name="firstname"
+                   formControlName="firstname"
+                   placeholder="FirstName"
+                   [(ngModel)]="registrationObject.firstName"
+                   required
+                   autocomplete="off"
+                   trimOnBlur>
+            <mat-error *ngIf="registerationForm.get('firstname').invalid && registerationForm.get('firstname').touched">
+              {{ getErrorMessage(registerationForm, validation_messages, 'firstname', 'firstname') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="5">
+        </div>
+        <div fxFlex="50" class="p-r-12">
+          <mat-form-field class="full-width">
+            <input matInput
+                   name="lastname"
+                   formControlName="lastname"
+                   [(ngModel)]="registrationObject.lastName"
+                   placeholder="LastName"
+                   required
+                   autocomplete="off" trimOnBlur>
+            <mat-error *ngIf="registerationForm.get('lastname').invalid && registerationForm.get('lastname').touched">
+              {{ getErrorMessage(registerationForm, validation_messages, 'lastname', 'lastname') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" class="m-b-10">
+        <div fxFlex="50" class="p-r-12">
+          <mat-form-field class="full-width">
+            <input matInput
+                   type="email"
+                   name="email"
+                   formControlName="email"
+                   placeholder="Email Id"
+                   [(ngModel)]="registrationObject.emailId"
+                   required
+                   autocomplete="off" trimOnBlur>
+            <mat-error *ngIf="registerationForm.get('email').invalid && registerationForm.get('email').touched">
+              {{ getErrorMessage(registerationForm, validation_messages, 'email', 'email') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="5">
+        </div>
+        <div fxFlex="50" class="p-r-12">
+          <mat-form-field class="full-width">
+            <input matInput
+                   name="phone"
+                   formControlName="phone"
+                   [(ngModel)]="registrationObject.phoneNumber"
+                   placeholder="Phone Number"
+                   required maxlength="10"
+                   minlength="10"
+                   autocomplete="off" trimOnBlur>
+            <mat-error *ngIf="registerationForm.get('phone').invalid && registerationForm.get('phone').touched">
+              {{ getErrorMessage(registerationForm, validation_messages, 'phone', 'phone') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+     
+      <div fxLayout="row" class="m-b-10">
+        <div fxFlex="48" class="p-r-12">
+          <mat-form-field class="full-width">
+            <mat-select formControlName="gender" placeholder="Gender" [(ngModel)]="registrationObject.gender"
+                        name="gender" id="gender" required>
+              <mat-option *ngFor="let genderdata of genderData" [value]="genderdata">{{genderdata}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="registerationForm.get('gender').invalid && registerationForm.get('gender').touched">
+              {{ getErrorMessage(registerationForm, validation_messages, 'gender', 'gender')}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+   
+    </mat-card-content>
+    <mat-card-footer>
+      <div flex="row" fxLayoutAlign="flex-end">
+        <div class="m-b-r">
+          <button mat-raised-button color="primary" [disabled]="!registerationForm.valid" type="submit">Submit</button>
+        </div>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</form>

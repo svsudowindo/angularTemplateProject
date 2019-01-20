@@ -24,6 +24,10 @@ const routes: Routes = [
       {
         path: '404',
         loadChildren: './views/auth-views/page-not-found/page-not-found.module#PageNotFoundModule'
+      },
+      {
+        path: 'registration',
+        loadChildren: './views/auth-views/registration/registration.module#RegistrationModule'
       }
     ]
   },
