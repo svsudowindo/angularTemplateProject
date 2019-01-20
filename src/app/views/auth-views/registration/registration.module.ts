@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import { TitleCasePipe, CommonModule } from '@angular/common';
 
 import {
   MatInputModule,
@@ -26,25 +22,16 @@ import {
   MatSnackBarModule,
   MatSlideToggleModule
 } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-
-import { InputTrimModule } from 'ng2-trim-directive';
 import { RegistrationRoutingModule } from './registration-routing.module';
 import { RegisterComponent } from './register/register.component';
+import { SharedModule } from '../../../shared/shared.module';
 
 
 @NgModule({
   declarations: [RegisterComponent],
   imports: [
-    FlexLayoutModule,
-    CommonModule,
     RegistrationRoutingModule,
-    InputTrimModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatInputModule,
     MatListModule,
     MatCardModule,
@@ -64,6 +51,8 @@ import { RegisterComponent } from './register/register.component';
     MatSlideToggleModule,
     MatOptionModule,
     MatSelectModule,
+    SharedModule,
+    CommonModule
   ],
   providers: [TitleCasePipe]
 })

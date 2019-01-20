@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, retry } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { errors } from '../JSONS/errors.json';
-import { PROPERTIES } from '../JSONS/app-properties';
+import { PROPERTIES } from '../../constants/app-properties';
+import { errors } from '../../constants/errors';
 
 // Custom Enums
 

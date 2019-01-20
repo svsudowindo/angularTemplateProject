@@ -1,8 +1,8 @@
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl } from '@angular/forms';
-import { BaseClass } from './../../../../common/services/common/baseClass';
-import AppEnums from './../../../../common/services/common/enums';
+import { BaseClass } from './../../../../shared/services/common/baseClass';
 import { Registration } from './../registration.model';
+import { VALIDATION_PATTERNS } from '../../../../shared/constants/validation-patterns';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,7 @@ export class RegisterComponent extends BaseClass implements OnInit {
   public successMessageStatus: string;
   public errorMessageStatus: string;
   public genderData = ['Male', 'Female'];
-  
+
 
   public validation_messages = {
     'firstname': [
@@ -55,32 +55,32 @@ export class RegisterComponent extends BaseClass implements OnInit {
 
   constructor(public injector: Injector) {
     super(injector);
-    
+
   }
 
   ngOnInit() {
     this.registerationForm = new FormGroup({
       firstname: new FormControl('', Validators.compose([
-        Validators.required, this.noWhitespaceValidator, Validators.pattern("^[A-Za-z' ']*$"),
+        Validators.required, this.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
         Validators.maxLength(20),
         Validators.minLength(2)
       ])),
       email: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern(AppEnums.VALIDATION_PATTERNS.EMAIL)
+        Validators.pattern(VALIDATION_PATTERNS.EMAIL)
       ])),
       doj: new FormControl('', Validators.compose([
         Validators.required
       ])),
       lastname: new FormControl('', Validators.compose([
-        Validators.required, this.noWhitespaceValidator, Validators.pattern("^[A-Za-z' ']*$"),
+        Validators.required, this.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
         Validators.maxLength(20),
         Validators.minLength(3)
       ])),
       role: new FormControl(),
       phone: new FormControl('', Validators.compose([
         Validators.minLength(10),
-        Validators.pattern(AppEnums.VALIDATION_PATTERNS.POSITIVE_INTEGER),
+        Validators.pattern(VALIDATION_PATTERNS.POSITIVE_INTEGER),
         Validators.maxLength(10),
         Validators.minLength(10),
         this.phoneNumberValidator
@@ -89,38 +89,33 @@ export class RegisterComponent extends BaseClass implements OnInit {
         Validators.required
       ])),
       managerid: new FormControl()
-    })
+    });
 
   }
 
 
   onsubmit() {
     if (this.registerationForm.valid) {
-          
 
-          //this.registerationForm.reset();
-          //this.addUserNgForm.resetForm();
-     
+
+          // this.registerationForm.reset();
+          // this.addUserNgForm.resetForm();
+
     }
   }
-  
+
   public noWhitespaceValidator(control: FormControl) {
-    let isWhitespace = (control.value || '').trim().length == 0;
-    let isValid = !isWhitespace;
-    return isValid ? null : { 'whitespace': true }
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
   }
 
   phoneNumberValidator(control: AbstractControl): { [key: string]: boolean } | null {
 
-    if (control.value.trim() !== undefined && (isNaN(control.value.trim()) || control.value.trim() < 1)) {
+    if (control.value !== undefined && control.value.trim() !== undefined && (isNaN(control.value.trim()) || control.value.trim() < 1)) {
 
       return { 'phoneNumber': true };
     }
     return null;
   }
-
- 
-
-
-
 }
