@@ -55,7 +55,7 @@ export class RegistrationComponent extends BaseClass implements OnInit {
 
   constructor(public injector: Injector) {
     super(injector);
-
+   
   }
 
   ngOnInit() {
@@ -90,6 +90,10 @@ export class RegistrationComponent extends BaseClass implements OnInit {
       ])),
       managerid: new FormControl()
     });
+
+  setTimeout(() => {
+    this.postShow();
+  }, 5000);
 
   }
 

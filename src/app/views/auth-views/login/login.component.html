@@ -2,4 +2,21 @@
   login works!
 </p>
 
+<app-response-message type="SUCCESS" [message]="successMessageStatus"></app-response-message>
+<app-response-message type="ERROR" [message]="errorMessageStatus"></app-response-message>
+
 <button (click)="register()">register</button>
+
+<br>
+<br>
+<br>
+<br>
+
+<button (click)="openDialog()">Open Dialog</button>
+
+<br>
+<br>
+<br>
+<br>
+
+<button (click)="openConfirm()">Confirm Popup</button>

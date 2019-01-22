@@ -21,7 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
     AdminLayoutComponent
   ],
   imports: [
-  AppRoutingModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
     SharedModule

@@ -56,4 +56,26 @@ export class BaseClass implements OnInit {
     }
     Utils.log('Invalid Controls: ' + Utils.stringify(invalid));
   }
+
+  preShow() {
+    this.pageLoaded = false;
+    this.showLoading();
+  }
+
+  postShow() {
+    this.pageLoaded = true;
+    this.hideLoading();
+  //   setTimeout(() => {
+  //     Utils.gotoTopOfPage();
+  //   }, 100);
+   }
+
+   showLoading() {
+    this.globalVariablesForBaseClass.open();
+  }
+
+  hideLoading() {
+    this.globalVariablesForBaseClass.close();
+  }
+
 }
