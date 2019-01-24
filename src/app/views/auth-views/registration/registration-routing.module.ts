@@ -5,7 +5,12 @@ import { RegistrationComponent } from './registration.component';
 const routes: Routes = [
   {
     path: '',
-    component: RegistrationComponent
+    children: [
+      {
+        path: '',
+        component: RegistrationComponent
+      }
+    ]
   }
 ];
 

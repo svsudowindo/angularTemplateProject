@@ -6,8 +6,13 @@ import { CanDeactivateService } from '../../../shared/services/guard-services/ca
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
-    canDeactivate: [CanDeactivateService]
+    children: [
+      {
+        path: '',
+        component: DashboardComponent,
+        canDeactivate: [CanDeactivateService]
+      }
+    ]
   }
 ];
 
