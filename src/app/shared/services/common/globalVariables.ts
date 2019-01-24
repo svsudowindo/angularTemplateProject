@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AppLoaderService } from './../../components/componentsAsService/app-loader/app-loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class GlobalVariables {
   private paramsData: any;
   private retainParamValue = false;
 
-  constructor() { }
+  constructor(public loader: AppLoaderService) { }
   public getParameterData() {
     const output = this.paramsData;
     if (this.retainParamValue === false) {
@@ -24,4 +25,13 @@ export class GlobalVariables {
     this.paramsData = input;
     this.retainParamValue = retainValue;
   }
+
+  open() {
+    this.loader.open();
+  }
+
+  close() {
+    this.loader.close();
+  }
+
 }
