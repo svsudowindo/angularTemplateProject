@@ -5,6 +5,8 @@ import { AppDialogService } from './../../../shared/components/componentsAsServi
 import { AppConfirmService } from './../../../shared/components/componentsAsService/app-confirm/app-confirm.service';
 import { CommonHttpService } from '../../../shared/services/http/common-http.service';
 import { HttpHeaders } from '@angular/common/http';
+import Utils from './../../../shared/services/common/utils';
+import { utils } from 'protractor';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +28,7 @@ export class LoginComponent extends BaseClass implements OnInit {
   }
 
   ngOnInit() {
-
+    Utils.log('hello from login component by utils method');
   }
 
   register() {
