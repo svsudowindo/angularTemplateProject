@@ -10,8 +10,10 @@ import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.co
 import { AdminLayoutComponent } from './shared/layouts/admin-layout/admin-layout.component';
 
 // Custom Modules
-import {SharedModule} from './shared/shared.module';
+import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HeaderInterceptorsService } from './shared/services/http/header-interceptors.service';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { AppRoutingModule } from './app-routing.module';
     CommonModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    // { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptorsService, multi: true }
+  ],
   bootstrap: [AppComponent],
   exports: []
 })
