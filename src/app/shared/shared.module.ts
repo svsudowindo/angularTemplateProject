@@ -11,9 +11,6 @@ import {  AppDialogModule } from './components/componentsAsService/app-dialog/ap
 import { AppLoaderModule } from './components/componentsAsService/app-loader/app-loader.module';
 import { ResponseMessageComponent } from './components/response-message/response-message.component';
 
-
-
-
 @NgModule({
   declarations: [ResponseMessageComponent],
   imports: [

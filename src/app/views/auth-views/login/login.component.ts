@@ -55,7 +55,6 @@ export class LoginComponent extends BaseClass implements OnInit {
     this._httpCommonService.get('todos').subscribe((res) => {
       console.log(res);
       this.successMessageStatus = 'Success';
-
     },
       ((err) => {
         this.errorMessageStatus = err;
@@ -68,9 +67,7 @@ export class LoginComponent extends BaseClass implements OnInit {
       body: 'kumar',
       userId: 999
     });
-    const headers = new HttpHeaders();
-    headers.set('Content-type', 'application/json; charset=UTF-8');
-    this._httpCommonService.post('posts', postBody, headers).subscribe((res) => {
+    this._httpCommonService.post('posts', postBody).subscribe((res) => {
       console.log(res);
       this.successMessageStatus = 'Success';
 
@@ -88,9 +85,7 @@ export class LoginComponent extends BaseClass implements OnInit {
       userId: 999,
       id: 1
     });
-    const headers = new HttpHeaders();
-    headers.set('Content-type', 'application/json; charset=UTF-8');
-    this._httpCommonService.put('posts/1', postBody, headers).subscribe((res) => {
+    this._httpCommonService.put('posts/1', postBody).subscribe((res) => {
       console.log(res);
       this.successMessageStatus = 'Success';
 
@@ -105,9 +100,8 @@ export class LoginComponent extends BaseClass implements OnInit {
       title: 'sai1234',
       body: 'kumar1234'
     });
-    const headers = new HttpHeaders();
-    headers.set('Content-type', 'application/json; charset=UTF-8');
-    this._httpCommonService.patch('posts/1', postBody, headers).subscribe((res) => {
+
+    this._httpCommonService.patch('posts/1', postBody).subscribe((res) => {
       console.log(res);
       this.successMessageStatus = 'Success';
     },
