@@ -1,22 +1,32 @@
-<p>
-  login works!
-</p>
-
 <app-response-message type="SUCCESS" [message]="successMessageStatus"></app-response-message>
 <app-response-message type="ERROR" [message]="errorMessageStatus"></app-response-message>
+<div align="center">
+  <br />
+  <br />
+  <button (click)="register()" mat-raised-button color="primary">register</button>
+  <br />
+  <br />
+  <button mat-raised-button color="warn" (click)="openDialog()">Open Dialog</button>
+  <br />
+  <br />
+  <button mat-raised-button color="primary" (click)="openConfirm()">Confirm Popup</button>
+  <br />
+  <br />
+  <button mat-raised-button color="primary" (click)="getRemoteData()">Get Call</button>
+  <br />
+  <br />
+  <button mat-raised-button color="primary" (click)="postRemoteData()">Post Call</button>
+  <br />
+  <br />
+  <button mat-raised-button color="primary" (click)="putRemoteData()">Put Call</button>
+  <br />
+  <br />
 
-<button (click)="register()">register</button>
+  <button mat-raised-button color="primary" (click)="patchRemoteData()">Patch Call</button>
+  <br />
+  <br />
 
-<br>
-<br>
-<br>
-<br>
-
-<button (click)="openDialog()">Open Dialog</button>
-
-<br>
-<br>
-<br>
-<br>
-
-<button (click)="openConfirm()">Confirm Popup</button>
+  <button mat-raised-button color="primary" (click)="deleteRemoteData()">Delete Call</button>
+  <br />
+  <br />
+</div>
