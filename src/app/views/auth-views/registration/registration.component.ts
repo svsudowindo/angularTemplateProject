@@ -1,5 +1,5 @@
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl, FormBuilder } from '@angular/forms';
 import { BaseClass } from '../../../shared/services/common/baseClass';
 import { Registration } from './registration.model';
 import { VALIDATION_PATTERNS } from '../../../shared/constants/validation-patterns';
@@ -50,36 +50,37 @@ export class RegistrationComponent extends BaseClass implements OnInit {
     ]
   };
 
-  constructor(public injector: Injector) {
+  constructor(public injector: Injector,
+    private _formBuilder: FormBuilder) {
     super(injector);
   }
 
   ngOnInit() {
-    this.registerationForm = new FormGroup({
-      firstname: new FormControl('', Validators.compose([
+    this.registerationForm = this._formBuilder.group({
+      firstname: ['', Validators.compose([
         Validators.required, this.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
         Validators.maxLength(20),
         Validators.minLength(2)
-      ])),
-      email: new FormControl('', Validators.compose([
+      ])],
+      email: ['', Validators.compose([
         Validators.required,
         Validators.pattern(VALIDATION_PATTERNS.EMAIL)
-      ])),
-      lastname: new FormControl('', Validators.compose([
+      ])],
+      lastname: ['', Validators.compose([
         Validators.required, this.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
         Validators.maxLength(20),
         Validators.minLength(3)
-      ])),
-      phone: new FormControl('', Validators.compose([
+      ])],
+      phone: ['', Validators.compose([
         Validators.minLength(10),
         Validators.pattern(VALIDATION_PATTERNS.POSITIVE_INTEGER),
         Validators.maxLength(10),
         Validators.minLength(10),
         this.phoneNumberValidator
-      ])),
-      gender: new FormControl('', Validators.compose([
+      ])],
+      gender: ['', Validators.compose([
         Validators.required
-      ]))
+      ])]
     });
 
     setTimeout(() => {
