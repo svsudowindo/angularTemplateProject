@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl
 import { BaseClass } from '../../../shared/services/common/baseClass';
 import { Registration } from './registration.model';
 import { VALIDATION_PATTERNS } from '../../../shared/constants/validation-patterns';
-import Utils from '../../../shared/services/common/utils';
+import { CustomValidators } from '../../../shared/services/common/validators';
 
 @Component({
   selector: 'app-registration',
@@ -68,7 +68,7 @@ export class RegistrationComponent extends BaseClass implements OnInit {
   initializeForm() {
     this.registerationForm = this._formBuilder.group({
       firstname: ['', Validators.compose([
-        Validators.required, this.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
+        Validators.required, CustomValidators.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
         Validators.maxLength(20),
         Validators.minLength(2)
       ])],
@@ -77,7 +77,7 @@ export class RegistrationComponent extends BaseClass implements OnInit {
         Validators.pattern(VALIDATION_PATTERNS.EMAIL)
       ])],
       lastname: ['', Validators.compose([
-        Validators.required, this.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
+        Validators.required, CustomValidators.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
         Validators.maxLength(20),
         Validators.minLength(3)
       ])],
@@ -86,34 +86,20 @@ export class RegistrationComponent extends BaseClass implements OnInit {
         Validators.pattern(VALIDATION_PATTERNS.POSITIVE_INTEGER),
         Validators.maxLength(10),
         Validators.minLength(10),
-        this.phoneNumberValidator
+        CustomValidators.phoneNumberValidator
       ])],
       gender: ['', Validators.compose([
         Validators.required
       ])]
     });
-
   }
 
 
-  onsubmit() {
+  onSubmit() {
     if (this.registerationForm.valid) {
       console.log(this.registerationForm.value);
       this.registerationForm.reset();
       this.registerationNgForm.resetForm();
     }
-  }
-
-  public noWhitespaceValidator(control: FormControl) {
-    const isWhitespace = (control.value || '').trim().length === 0;
-    const isValid = !isWhitespace;
-    return isValid ? null : { 'whitespace': true };
-  }
-
-  phoneNumberValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    if (Utils.isValidInput(control.value) && (isNaN(control.value.trim()) || control.value.trim() < 1)) {
-      return { 'phoneNumber': true };
-    }
-    return null;
   }
 }
