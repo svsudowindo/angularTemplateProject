@@ -14,6 +14,7 @@ export class LoginService {
 
   login(requestObject): Observable<any> {
     requestObject.path = this._frameUrlService.getHttpFramedURL(requestObject);
+    console.log(requestObject);
     return this._commonHttpService.sendReciveService(requestObject);
   }
 }

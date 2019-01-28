@@ -57,6 +57,9 @@ export class LoginComponent extends BaseClass implements OnInit {
 
   // getDetails
   getDetails() {
+    this.successMessageStatus = '';
+    this.errorMessageStatus = '';
+
     this._globalVariables.setParameterData(GlobalVariableEnums.TOKEN, 'abc');
     RequestEnums.LOGIN.values.push(1);
     this._loginService.login(RequestEnums.LOGIN).subscribe((res) => {

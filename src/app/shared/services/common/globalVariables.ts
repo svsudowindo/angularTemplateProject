@@ -11,6 +11,9 @@ export class GlobalVariables {
   private retainParamValue = false;
 
   constructor(public loader: AppLoaderService) { }
+
+  // returns the data based on the key passed
+  // @key => object key from global variable enums
   public getParameterData(key) {
     if (!Utils.isUndefined(this.paramsData) && !Utils.isNull(this.paramsData)) {
       if (this.paramsData.hasOwnProperty(key)) {
@@ -28,11 +31,13 @@ export class GlobalVariables {
   }
 
   // single time set method
+  // @key => object key from global variable enums
   // @input => any data value either an object or a value
   // @retainvalue => weather the data should present or not
   public setParameterData(key, input, retainValue = true) {
     this.paramsData[key] = input;
     this.retainParamValue = retainValue;
+    console.log(this.paramsData);
   }
 
   open() {
