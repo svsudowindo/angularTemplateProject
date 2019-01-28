@@ -14,18 +14,13 @@ import { Observable } from 'rxjs';
 })
 export class CommonHttpService {
 
-    private base_url = PROPERTIES.BASE_URL;
     constructor(private _http: HttpClient) { }
 
     // @method get
     // @params HttpParams if needed
     // @path Request URL
-    public get(path, params: HttpParams = new HttpParams(), customHeaders?: HttpHeaders): Observable<any> {
-        const requestUrl = this.base_url + path;
-        return this._http.get(requestUrl, {
-            params: params,
-            headers: customHeaders
-        }).pipe(
+    private get(path, requestOptions): Observable<any> {
+        return this._http.get(path, requestOptions).pipe(
             map(res => {
                 return res;
             }),
@@ -37,9 +32,7 @@ export class CommonHttpService {
     // @method post
     // @param path
     // @param body
-    public put(path: string, body: Object = {}, customHeaders?: HttpHeaders): Observable<any> {
-        path = this.base_url + path;
-        const requestOptions = customHeaders ? { headers: customHeaders } : {};
+    private put(path: string, body: Object = {}, requestOptions): Observable<any> {
         return this._http.put(
             path, body, requestOptions).pipe(
                 map(res => {
@@ -52,9 +45,7 @@ export class CommonHttpService {
     // @method post
     // @param path
     // @param body
-    public post(path: string, body: Object = {}, customHeaders?: HttpHeaders): Observable<any> {
-        path = this.base_url + path;
-        const requestOptions = customHeaders ? { headers: customHeaders } : {};
+    private post(path: string, body: Object = {}, requestOptions): Observable<any> {
         return this._http.post(
             path, body, requestOptions).pipe(
                 map(res => {
@@ -70,9 +61,7 @@ export class CommonHttpService {
     // @param path
     // @param body
     // @param customHeaders
-    public patch(path: string, body: Object = {}, customHeaders?: HttpHeaders): Observable<any> {
-        path = this.base_url + path;
-        const requestOptions = customHeaders ? { headers: customHeaders } : {};
+    private patch(path: string, body: Object = {}, requestOptions): Observable<any> {
         return this._http.patch(
             path, body, requestOptions).pipe(
                 map(res => {
@@ -86,9 +75,7 @@ export class CommonHttpService {
     // @method delete
     // @param path
     // @param customHeaders
-    public delete(path: string, customHeaders?: HttpHeaders): Observable<any> {
-        path = this.base_url + path;
-        const requestOptions = customHeaders ? { headers: customHeaders } : {};
+    private delete(path: string, requestOptions): Observable<any> {
         return this._http.delete(
             path, requestOptions).pipe(
                 map(res => {
@@ -112,5 +99,31 @@ export class CommonHttpService {
             errorMessage = errors[error.status].message;
         }
         return throwError(errorMessage);
+    }
+
+    // To execute any Http service request
+    public sendReciveService(requestObj: any,
+        body: Object = {},
+        params: HttpParams = new HttpParams(),
+        customHeaders?: HttpHeaders): Observable<any> {
+        const requestOptions = customHeaders ? { headers: customHeaders } : {};
+        requestOptions['params'] = params;
+        switch (requestObj.type) {
+            case 'GET': {
+                return this.get(requestObj.path, requestOptions);
+            }
+            case 'POST': {
+                return this.post(requestObj.path, body, requestOptions);
+            }
+            case 'PUT': {
+                return this.put(requestObj.path, body, requestOptions);
+            }
+            case 'PATCH': {
+                return this.patch(requestObj.path, body, requestOptions);
+            }
+            case 'DELETE': {
+                return this.delete(requestObj.path, requestOptions);
+            }
+        }
     }
 }

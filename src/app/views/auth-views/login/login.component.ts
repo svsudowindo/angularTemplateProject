@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 import { BaseClass } from './../../../shared/services/common/baseClass';
 import { AppDialogService } from './../../../shared/components/componentsAsService/app-dialog/app-dialog.service';
 import { AppConfirmService } from './../../../shared/components/componentsAsService/app-confirm/app-confirm.service';
-import { CommonHttpService } from '../../../shared/services/http/common-http.service';
-import { HttpHeaders } from '@angular/common/http';
+import { LoginService } from './login.service';
+import { RequestEnums } from '../../../shared/constants/request-enums';
+import { GlobalVariables } from '../../../shared/services/common/globalVariables';
+import { GlobalVariableEnums } from '../../../shared/constants/gloabal-variable-enums';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,8 @@ export class LoginComponent extends BaseClass implements OnInit {
     public injector: Injector,
     public dialog: AppDialogService,
     public confirm: AppConfirmService,
-    private _httpCommonService: CommonHttpService) {
+    private _loginService: LoginService,
+    private _globalVariables: GlobalVariables) {
     super(injector);
   }
 
@@ -51,69 +54,11 @@ export class LoginComponent extends BaseClass implements OnInit {
     });
   }
 
-  getRemoteData() {
-    this._httpCommonService.get('todos').subscribe((res) => {
-      console.log(res);
-      this.successMessageStatus = 'Success';
-    },
-      ((err) => {
-        this.errorMessageStatus = err;
-      }));
-  }
-
-  postRemoteData() {
-    const postBody = JSON.stringify({
-      title: 'sai',
-      body: 'kumar',
-      userId: 999
-    });
-    this._httpCommonService.post('posts', postBody).subscribe((res) => {
-      console.log(res);
-      this.successMessageStatus = 'Success';
-
-    },
-      ((err) => {
-        this.errorMessageStatus = err;
-      }));
-  }
-
-
-  putRemoteData() {
-    const postBody = JSON.stringify({
-      title: 'sai1234',
-      body: 'kumar',
-      userId: 999,
-      id: 1
-    });
-    this._httpCommonService.put('posts/1', postBody).subscribe((res) => {
-      console.log(res);
-      this.successMessageStatus = 'Success';
-
-    },
-      ((err) => {
-        this.errorMessageStatus = err;
-      }));
-  }
-
-  patchRemoteData() {
-    const postBody = JSON.stringify({
-      title: 'sai1234',
-      body: 'kumar1234'
-    });
-
-    this._httpCommonService.patch('posts/1', postBody).subscribe((res) => {
-      console.log(res);
-      this.successMessageStatus = 'Success';
-    },
-      ((err) => {
-        this.errorMessageStatus = err;
-      }));
-  }
-
-  deleteRemoteData() {
-    const headers = new HttpHeaders();
-    headers.set('Content-type', 'application/json; charset=UTF-8');
-    this._httpCommonService.delete('posts/1', headers).subscribe((res) => {
+  // getDetails
+  getDetails() {
+    this._globalVariables.setParameterData(GlobalVariableEnums.TOKEN, 'abc');
+    RequestEnums.LOGIN.values.push(1);
+    this._loginService.login(RequestEnums.LOGIN).subscribe((res) => {
       console.log(res);
       this.successMessageStatus = 'Success';
     },
