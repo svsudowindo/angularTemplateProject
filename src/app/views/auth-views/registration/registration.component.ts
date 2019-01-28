@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl
 import { BaseClass } from '../../../shared/services/common/baseClass';
 import { Registration } from './registration.model';
 import { VALIDATION_PATTERNS } from '../../../shared/constants/validation-patterns';
+import Utils from '../../../shared/services/common/utils';
 
 @Component({
   selector: 'app-registration',
@@ -11,7 +12,7 @@ import { VALIDATION_PATTERNS } from '../../../shared/constants/validation-patter
 })
 export class RegistrationComponent extends BaseClass implements OnInit {
 
-  @ViewChild('addUserNgForm') addUserNgForm: FormGroupDirective;
+  @ViewChild('registerationNgForm') registerationNgForm: FormGroupDirective;
   public registerationForm: FormGroup;
   public registrationObject = new Registration();
   public successMessageStatus: string;
@@ -56,6 +57,15 @@ export class RegistrationComponent extends BaseClass implements OnInit {
   }
 
   ngOnInit() {
+    // this.registerationForm = this._formBuilder.
+    this.initializeForm();
+    setTimeout(() => {
+      this.postShow();
+    }, 5000);
+
+  }
+
+  initializeForm() {
     this.registerationForm = this._formBuilder.group({
       firstname: ['', Validators.compose([
         Validators.required, this.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
@@ -83,17 +93,14 @@ export class RegistrationComponent extends BaseClass implements OnInit {
       ])]
     });
 
-    setTimeout(() => {
-      this.postShow();
-    }, 5000);
-
   }
 
 
   onsubmit() {
     if (this.registerationForm.valid) {
-      // this.registerationForm.reset();
-      // this.addUserNgForm.resetForm();
+      console.log(this.registerationForm.value);
+      this.registerationForm.reset();
+      this.registerationNgForm.resetForm();
     }
   }
 
@@ -104,8 +111,7 @@ export class RegistrationComponent extends BaseClass implements OnInit {
   }
 
   phoneNumberValidator(control: AbstractControl): { [key: string]: boolean } | null {
-
-    if (control.value !== undefined && control.value.trim() !== undefined && (isNaN(control.value.trim()) || control.value.trim() < 1)) {
+    if (Utils.isValidInput(control.value) && (isNaN(control.value.trim()) || control.value.trim() < 1)) {
       return { 'phoneNumber': true };
     }
     return null;

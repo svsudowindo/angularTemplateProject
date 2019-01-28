@@ -6,8 +6,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 // custom components
 import { AppComponent } from './app.component';
-import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
-import { AdminLayoutComponent } from './shared/layouts/admin-layout/admin-layout.component';
+import { AuthLayoutComponent } from './shared/components/layouts/auth-layout/auth-layout.component';
+import { AdminLayoutComponent } from './shared/components/layouts/admin-layout/admin-layout.component';
 
 // Custom Modules
 import { SharedModule } from './shared/shared.module';

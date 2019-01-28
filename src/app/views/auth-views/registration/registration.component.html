@@ -9,7 +9,6 @@
                    name="firstname"
                    formControlName="firstname"
                    placeholder="FirstName"
-                   [(ngModel)]="registrationObject.firstName"
                    required
                    autocomplete="off"
                    trimOnBlur>
@@ -25,7 +24,6 @@
             <input matInput
                    name="lastname"
                    formControlName="lastname"
-                   [(ngModel)]="registrationObject.lastName"
                    placeholder="LastName"
                    required
                    autocomplete="off" trimOnBlur>
@@ -43,7 +41,6 @@
                    name="email"
                    formControlName="email"
                    placeholder="Email Id"
-                   [(ngModel)]="registrationObject.emailId"
                    required
                    autocomplete="off" trimOnBlur>
             <mat-error *ngIf="registerationForm.get('email').invalid && registerationForm.get('email').touched">
@@ -58,7 +55,6 @@
             <input matInput
                    name="phone"
                    formControlName="phone"
-                   [(ngModel)]="registrationObject.phoneNumber"
                    placeholder="Phone Number"
                    required maxlength="10"
                    minlength="10"
@@ -73,7 +69,7 @@
       <div fxLayout="row" class="m-b-10">
         <div fxFlex="48" class="p-r-12">
           <mat-form-field class="full-width">
-            <mat-select formControlName="gender" placeholder="Gender" [(ngModel)]="registrationObject.gender"
+            <mat-select formControlName="gender" placeholder="Gender"
                         name="gender" id="gender" required>
               <mat-option *ngFor="let genderdata of genderData" [value]="genderdata">{{genderdata}}</mat-option>
             </mat-select>
