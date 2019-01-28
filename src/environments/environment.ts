@@ -1,14 +1,15 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-// import { Level } from 'angular2-logger/core';
 
 export const environment = {
   production: false,
   logger: {
-   // level: Level.LOG,
+    // level: Level.LOG,
     enabled: true
-  }
+  },
+  // Any base url of the application which is common for all request
+  BASE_URL: 'https://jsonplaceholder.typicode.com'
 };
 
 /*
