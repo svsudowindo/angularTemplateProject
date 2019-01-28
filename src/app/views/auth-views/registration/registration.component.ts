@@ -21,41 +21,37 @@ export class RegistrationComponent extends BaseClass implements OnInit {
 
   public validation_messages = {
     'firstname': [
-      { type: 'required', message: 'USERS.ADD_USER.ERRORS.REQUIRED.FIRST_NAME' },
+      { type: 'required', message: 'Please enter firstname' },
       { type: 'whitespace', message: 'Please enter valid firstname' },
       { type: 'pattern', message: 'Please enter alphabets only' },
       { type: 'maxlength', message: 'Firstname can be maximum of 20 characters' },
       { type: 'minlength', message: 'Firstname should be minimum of 2 characters' }
     ],
     'email': [
-      { type: 'required', message: 'USERS.ADD_USER.ERRORS.REQUIRED.EMAIL' },
-      { type: 'pattern', message: 'SIGN_IN.ERRORS.PATTERN' }
-    ],
-    'doj': [
-      { type: 'required', message: 'USERS.ADD_USER.ERRORS.REQUIRED.DOJ' }
+      { type: 'required', message: 'Please enter email' },
+      { type: 'pattern', message: 'Please enter valid email' }
     ],
     'lastname': [
-      { type: 'required', message: 'USERS.ADD_USER.ERRORS.REQUIRED.LAST_NAME' },
+      { type: 'required', message: 'Please enter LastName' },
       { type: 'whitespace', message: 'Please enter valid lastname' },
       { type: 'pattern', message: 'Please enter alphabets only' },
       { type: 'maxlength', message: 'Lastname can be maximum of 20 characters' },
       { type: 'minlength', message: 'Lastname should be minimum of 3 characters' }
     ],
     'phone': [
-      { type: 'required', message: 'USERS.ADD_USER.ERRORS.REQUIRED.PHONE_NUMBER' },
+      { type: 'required', message: 'Please enter Phone number' },
       { type: 'pattern', message: 'Please enter only digits for phone number' },
       { type: 'maxlength', message: 'Phone number can be maximum of 10 digits' },
       { type: 'minlength', message: 'Phone number should be minimum of 10 digits' },
       { type: 'phoneNumber', message: 'Please enter valid mobile number' }
     ],
     'gender': [
-      { type: 'required', message: 'USERS.ADD_USER.ERRORS.REQUIRED.GENDER' }
+      { type: 'required', message: 'Please select Gender' }
     ]
   };
 
   constructor(public injector: Injector) {
     super(injector);
-   
   }
 
   ngOnInit() {
@@ -69,15 +65,11 @@ export class RegistrationComponent extends BaseClass implements OnInit {
         Validators.required,
         Validators.pattern(VALIDATION_PATTERNS.EMAIL)
       ])),
-      doj: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
       lastname: new FormControl('', Validators.compose([
         Validators.required, this.noWhitespaceValidator, Validators.pattern('^[A-Za-z\' \']*$'),
         Validators.maxLength(20),
         Validators.minLength(3)
       ])),
-      role: new FormControl(),
       phone: new FormControl('', Validators.compose([
         Validators.minLength(10),
         Validators.pattern(VALIDATION_PATTERNS.POSITIVE_INTEGER),
@@ -87,24 +79,20 @@ export class RegistrationComponent extends BaseClass implements OnInit {
       ])),
       gender: new FormControl('', Validators.compose([
         Validators.required
-      ])),
-      managerid: new FormControl()
+      ]))
     });
 
-  setTimeout(() => {
-    this.postShow();
-  }, 5000);
+    setTimeout(() => {
+      this.postShow();
+    }, 5000);
 
   }
 
 
   onsubmit() {
     if (this.registerationForm.valid) {
-
-
-          // this.registerationForm.reset();
-          // this.addUserNgForm.resetForm();
-
+      // this.registerationForm.reset();
+      // this.addUserNgForm.resetForm();
     }
   }
 
@@ -117,7 +105,6 @@ export class RegistrationComponent extends BaseClass implements OnInit {
   phoneNumberValidator(control: AbstractControl): { [key: string]: boolean } | null {
 
     if (control.value !== undefined && control.value.trim() !== undefined && (isNaN(control.value.trim()) || control.value.trim() < 1)) {
-
       return { 'phoneNumber': true };
     }
     return null;

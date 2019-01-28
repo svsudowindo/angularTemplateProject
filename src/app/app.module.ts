@@ -1,6 +1,5 @@
 // Angular Moudles
 import { NgModule } from '@angular/core';
-import { Logger, Options as LoggerOptions } from 'angular2-logger';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -32,9 +31,7 @@ import { environment } from './../environments/environment';
     FlexLayoutModule
   ],
   providers: [
-     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptorsService, multi: true },
-     Logger,
-    { provide: LoggerOptions, useValue: { level: environment.logger.level } }
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptorsService, multi: true }
   ],
   bootstrap: [AppComponent],
   exports: []
