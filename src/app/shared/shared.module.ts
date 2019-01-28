@@ -1,6 +1,7 @@
 // Angular Moudles
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Custom Modules
 import { PredefinedModule } from './modules/predefined/predefined.module';
@@ -20,7 +21,8 @@ import { ResponseMessageComponent } from './components/response-message/response
     MaterialModule,
     AppConfirmModule,
     AppDialogModule,
-    AppLoaderModule
+    AppLoaderModule,
+    FlexLayoutModule
   ],
   exports: [
     CustomModule,

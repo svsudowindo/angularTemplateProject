@@ -1,4 +1,4 @@
-import { Level } from 'angular2-logger/core';
+import { Level } from 'angular2-logger';
 
 export const environment = {
   production: true,

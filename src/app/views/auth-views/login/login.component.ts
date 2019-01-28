@@ -7,6 +7,7 @@ import { LoginService } from './login.service';
 import { RequestEnums } from '../../../shared/constants/request-enums';
 import { GlobalVariables } from '../../../shared/services/common/globalVariables';
 import { GlobalVariableEnums } from '../../../shared/constants/gloabal-variable-enums';
+import Utils from './../../../shared/services/common/utils';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,7 @@ export class LoginComponent extends BaseClass implements OnInit {
   }
 
   ngOnInit() {
-
+    Utils.log('hello from login component by utils method');
   }
 
   register() {

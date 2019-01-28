@@ -1,8 +1,9 @@
 // Angular Moudles
 import { NgModule } from '@angular/core';
-import { Logger, Options as LoggerOptions } from 'angular2-logger/core';
+import { Logger, Options as LoggerOptions } from 'angular2-logger';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // custom components
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptorsService } from './shared/services/http/header-interceptors.service';
 
+import { environment } from './../environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,10 +28,13 @@ import { HeaderInterceptorsService } from './shared/services/http/header-interce
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    FlexLayoutModule
   ],
   providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptorsService, multi: true }
+     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptorsService, multi: true },
+     Logger,
+    { provide: LoggerOptions, useValue: { level: environment.logger.level } }
   ],
   bootstrap: [AppComponent],
   exports: []
