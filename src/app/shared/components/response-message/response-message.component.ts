@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import Utils from '../../services/common/utils';
 
 @Component({
@@ -23,10 +23,10 @@ export class ResponseMessageComponent implements OnInit, OnChanges {
   ngOnInit() {
     // DO NOT MOVE - The below has to be on Init only
     this.messageType = this.type.toLocaleLowerCase();
-    if (this.type == 'SUCCESS') {
+    if (this.type === 'SUCCESS') {
       this.showCloseButton = false;
       this.allowAutoClose = true;
-    } else if (this.type == 'ERROR') {
+    } else if (this.type === 'ERROR') {
       this.showCloseButton = true;
       this.allowAutoClose = false;
     }
@@ -48,7 +48,7 @@ export class ResponseMessageComponent implements OnInit, OnChanges {
       }
     }
     */
-    if (this.allowAutoClose == true) {
+    if (this.allowAutoClose === true) {
       if (Utils.isValidInput(this.message)) {
         setTimeout(() => {
           this.clearMessage();

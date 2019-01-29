@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [],
@@ -12,15 +13,17 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
     FlexLayoutModule,
-    RouterModule
+    MaterialModule,
   ],
   exports: [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
     FlexLayoutModule,
-    RouterModule
+    MaterialModule,
   ]
 })
 export class PredefinedModule { }
