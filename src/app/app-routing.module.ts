@@ -9,6 +9,7 @@ import { CanActivateChildService } from './shared/services/guard-services/can-ac
 // Layout components
 import { AuthLayoutComponent } from './shared/components/layouts/auth-layout/auth-layout.component';
 import { AdminLayoutComponent } from './shared/components/layouts/admin-layout/admin-layout.component';
+import { CustomPreloaderService } from './shared/services/common/preloaders/custom-preloader.service';
 
 const routes: Routes = [
   {
@@ -31,7 +32,10 @@ const routes: Routes = [
       },
       {
         path: 'registration',
-        loadChildren: './views/auth-views/registration/registration.module#RegistrationModule'
+        loadChildren: './views/auth-views/registration/registration.module#RegistrationModule',
+        data: {
+          preload: true // use when you dont want lazy loading for a particular module
+        }
       }
     ]
   },
@@ -57,7 +61,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: CustomPreloaderService
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
