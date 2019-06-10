@@ -10,7 +10,6 @@ import { of } from 'rxjs/observable/of';
 export class CustomPreloaderService implements PreloadingStrategy {
 
   preload(route: Route, load: Function): Observable<any> {
-    console.log('hai');
     return route.data && route.data.preload ? load() : of(null);
   }
 

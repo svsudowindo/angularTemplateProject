@@ -26,6 +26,7 @@
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
     "ng2-trim-directive": "^2.3.2",
+    "node-sass": "^4.12.0",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.3.3",
     "tslib": "^1.9.0",
