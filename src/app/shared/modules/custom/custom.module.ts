@@ -8,11 +8,13 @@ import { AppDialogModule } from '../../components/componentsAsService/app-dialog
 import { AppConfirmModule } from '../../components/componentsAsService/app-confirm/app-confirm.module';
 import { ResponseMessageComponent } from '../../components/response-message/response-message.component';
 import { CommonModule } from '@angular/common';
+import { HighlightSearchPipe } from '../../pipes/highlight-search.pipe';
 
 @NgModule({
   declarations: [
     TrimOnBlurDirective,
-    ResponseMessageComponent
+    ResponseMessageComponent,
+    HighlightSearchPipe
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { CommonModule } from '@angular/common';
   exports: [
     TrimOnBlurDirective,
     InputTrimModule,
-    ResponseMessageComponent
+    ResponseMessageComponent,
+    HighlightSearchPipe
   ]
 })
 export class CustomModule { }
