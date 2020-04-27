@@ -1,3 +1,4 @@
+import { AppLoaderService } from './../../../shared/components/componentsAsService/app-loader/app-loader.service';
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl, FormBuilder } from '@angular/forms';
 import { BaseClass } from '../../../shared/services/common/baseClass';
@@ -51,18 +52,15 @@ export class RegistrationComponent extends BaseClass implements OnInit {
     ]
   };
 
-  constructor(public injector: Injector,
-    private _formBuilder: FormBuilder) {
-    super(injector);
+  constructor(
+    public injector: Injector,
+    private _formBuilder: FormBuilder,
+    private appLoaderService: AppLoaderService) {
+    super();
   }
 
   ngOnInit() {
-    // this.registerationForm = this._formBuilder.
     this.initializeForm();
-    setTimeout(() => {
-      this.postShow();
-    }, 5000);
-
   }
 
   initializeForm() {

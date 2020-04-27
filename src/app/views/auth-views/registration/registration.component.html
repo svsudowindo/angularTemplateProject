@@ -12,8 +12,8 @@
                    required
                    autocomplete="off"
                    trimOnBlur>
-            <mat-error *ngIf="registerationForm.get('firstname').invalid && registerationForm.get('firstname').touched">
-              {{ getErrorMessage(registerationForm, validation_messages, 'firstname', 'firstname') }}
+            <mat-error *ngIf="isValidField(registerationForm, 'firstname')">
+              {{ getErrorMessage(registerationForm, validation_messages, 'firstname') }}
             </mat-error>
           </mat-form-field>
         </div>
@@ -27,8 +27,8 @@
                    placeholder="LastName"
                    required
                    autocomplete="off" trimOnBlur>
-            <mat-error *ngIf="registerationForm.get('lastname').invalid && registerationForm.get('lastname').touched">
-              {{ getErrorMessage(registerationForm, validation_messages, 'lastname', 'lastname') }}
+            <mat-error *ngIf="isValidField(registerationForm, 'lastname')">
+              {{ getErrorMessage(registerationForm, validation_messages, 'lastname') }}
             </mat-error>
           </mat-form-field>
         </div>
@@ -43,8 +43,8 @@
                    placeholder="Email Id"
                    required
                    autocomplete="off" trimOnBlur>
-            <mat-error *ngIf="registerationForm.get('email').invalid && registerationForm.get('email').touched">
-              {{ getErrorMessage(registerationForm, validation_messages, 'email', 'email') }}
+            <mat-error *ngIf="isValidField(registerationForm, 'email')">
+              {{ getErrorMessage(registerationForm, validation_messages, 'email') }}
             </mat-error>
           </mat-form-field>
         </div>
@@ -59,8 +59,8 @@
                    required maxlength="10"
                    minlength="10"
                    autocomplete="off" trimOnBlur>
-            <mat-error *ngIf="registerationForm.get('phone').invalid && registerationForm.get('phone').touched">
-              {{ getErrorMessage(registerationForm, validation_messages, 'phone', 'phone') }}
+            <mat-error *ngIf="isValidField(registerationForm, 'phone')">
+              {{ getErrorMessage(registerationForm, validation_messages, 'phone') }}
             </mat-error>
           </mat-form-field>
         </div>
@@ -73,8 +73,8 @@
                         name="gender" id="gender" required>
               <mat-option *ngFor="let genderdata of genderData" [value]="genderdata">{{genderdata}}</mat-option>
             </mat-select>
-            <mat-error *ngIf="registerationForm.get('gender').invalid && registerationForm.get('gender').touched">
-              {{ getErrorMessage(registerationForm, validation_messages, 'gender', 'gender')}}
+            <mat-error *ngIf="isValidField(registerationForm, 'gender')">
+              {{ getErrorMessage(registerationForm, validation_messages, 'gender')}}
             </mat-error>
           </mat-form-field>
         </div>
