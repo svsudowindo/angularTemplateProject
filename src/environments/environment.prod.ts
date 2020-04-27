@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  logger: {
+    // level: Level.LOG,
+    enabled: false
+  }
 };
