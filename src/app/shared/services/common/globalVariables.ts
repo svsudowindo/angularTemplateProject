@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AppLoaderService } from './../../components/componentsAsService/app-loader/app-loader.service';
 import Utils from './utils';
 
 @Injectable({
@@ -10,7 +9,7 @@ export class GlobalVariables {
   private paramsData: any = {};
   private retainParamValue = false;
 
-  constructor(public loader: AppLoaderService) { }
+  constructor() { }
 
   // returns the data based on the key passed
   // @key => object key from global variable enums
@@ -40,12 +39,5 @@ export class GlobalVariables {
     console.log(this.paramsData);
   }
 
-  open() {
-    this.loader.open();
-  }
-
-  close() {
-    this.loader.close();
-  }
 
 }

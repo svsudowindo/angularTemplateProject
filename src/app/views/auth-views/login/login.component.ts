@@ -25,15 +25,15 @@ export class LoginComponent extends BaseClass implements OnInit {
   public errorMessageStatus: string;
 
   // once successfull login make can activate service to true
-  constructor(public route: Router,
-    public injector: Injector,
+  constructor(
+    public route: Router,
     public dialog: AppDialogService,
     public confirm: AppConfirmService,
     private loginService: LoginService,
     private globalVariables: GlobalVariables,
     private userStore: Store<fromUser.State>,
     private loggerService: LoggerService) {
-    super(injector);
+    super();
   }
 
   ngOnInit() {
@@ -44,7 +44,6 @@ export class LoginComponent extends BaseClass implements OnInit {
    * For navigate to registration page.
    */
   register() {
-    this.preShow();
     this.route.navigate(['registration']);
   }
 
