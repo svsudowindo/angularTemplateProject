@@ -3,21 +3,14 @@ import { environment } from '../../../../environments/environment';
 export default class Utils {
 
   /**
- * Check if the opened device is Mobile (or Tablet) vs Desktop
- *
- // @static
-  // @returns {boolean}
- // @memberof Utils
- */
+   * Check if the opened device is Mobile (or Tablet) vs Desktop
+   */
   static isSm(): boolean {
     return window.matchMedia(`(max-width: 959px)`).matches;
   }
 
   /**
    * Used to scroll to top of the page whenever pagination is done or a new page is invoked.
-   *
-   // @static
-   // @memberof Utils
    */
   static gotoTopOfPage() {
     Utils.log('***** Going to top of page ******');
@@ -33,10 +26,6 @@ export default class Utils {
 
   /**
    * Create a new guid value. Can be used for random generation of unique ids.
-   *
-   // @static
-  // @returns string
-   // @memberof Utils
    */
   static newGuid() {
     let result = '';
@@ -101,6 +90,7 @@ export default class Utils {
   static convertArrayToCommaSeparatedString(pobjArray: any) {
     let outputText = '';
     if (Utils.isValidInput(pobjArray)) {
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < pobjArray.length; i++) {
         outputText = outputText + pobjArray[i].value + ', ';
       }
@@ -111,9 +101,10 @@ export default class Utils {
   }
 
   static toIsoString(input: Date) {
+    // tslint:disable-next-line:one-variable-per-declaration
     const tzo = -input.getTimezoneOffset(),
       dif = tzo >= 0 ? '+' : '-',
-      pad = function (num) {
+      pad = (num) => {
         const norm = Math.floor(Math.abs(num));
         return (norm < 10 ? '0' : '') + norm;
       };
@@ -149,7 +140,13 @@ export default class Utils {
   static getTime(inputString: string) {
     try {
       const arr = inputString.split(/[- :]/);
-      const inputDateFormat = new Date(parseInt(arr[0]), parseInt(arr[1]) - 1, parseInt(arr[2]), parseInt(arr[3]), parseInt(arr[4]), parseInt(arr[5]));
+      const inputDateFormat = new Date(
+        parseInt(arr[0], 10),
+        parseInt(arr[1], 10) - 1,
+        parseInt(arr[2], 10),
+        parseInt(arr[3], 10),
+        parseInt(arr[4], 10),
+        parseInt(arr[5], 10));
       const inputDate = new Date(inputDateFormat);
       let hours: number = inputDate.getHours();
       const minutes: number = inputDate.getMinutes();
@@ -186,7 +183,7 @@ export default class Utils {
 
   static convertStringToNumber(input: string, defaultValue: number) {
     if (Utils.isValidInput(input)) {
-      return parseInt(input);
+      return parseInt(input, 10);
     } else {
       return defaultValue;
     }
@@ -248,6 +245,24 @@ export default class Utils {
       return new Date(parts[0], parts[1] - 1, parts[2]);
     } else {
       return new Date();
+    }
+  }
+
+ static getDateBySeperator(dateStr, seperator) {
+    try {
+      const date = new Date(dateStr);
+      const day = (date.getDate());
+      const month = (date.getMonth() + 1);
+      const year = (date.getFullYear());
+
+      let dayString = '';
+      let monthString = '';
+      dayString = day < 10 ? '0' + day.toString() : day.toString();
+      monthString = month < 10 ? '0' + month.toString() : month.toString();
+      const result = dayString + seperator + monthString + seperator + year;
+      return result;
+    } catch (e) {
+      return 'N/A';
     }
   }
 
@@ -372,7 +387,7 @@ export default class Utils {
     if (typeof input === 'undefined') {
       return true;
     } else {
-      let lstrTempstring = new String(input);
+      let lstrTempstring = String(input);
       lstrTempstring = lstrTempstring.trim();
       if (lstrTempstring === '' || lstrTempstring === 'undefined') {
         return true;
@@ -431,7 +446,8 @@ export default class Utils {
   static escapeInput(input) {
     let output = input;
     output = this.replaceAll(output, '"', '\"');
-    output = this.replaceAll(output, "'", "\'");
+    // tslint:disable-next-line:quotemark
+    output = this.replaceAll(output, '\'', "\'");
     return output;
   }
 
@@ -444,12 +460,76 @@ export default class Utils {
   }
 
   static setFocus(element) {
-    setTimeout(function () {
+    setTimeout(() => {
       document.getElementById(element).focus();
     }, 50);
   }
- // to avoid shallow copy and making into deep copy
- static avoidShallowClone(input) {
-  return JSON.parse(JSON.stringify(input));
-}
+
+  // to avoid shallow copy and making into deep copy
+  static avoidShallowClone(input) {
+    return JSON.parse(JSON.stringify(input));
+  }
+
+  // get isObject or not
+  static getIsObject(input: any) {
+    if (typeof (input) !== 'string' && typeof (input) !== 'number' && typeof (input) !== 'boolean') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  static stringifyObjectWithNoQuotesOnKeys = (objFromJson) => {
+    // In case of an array we'll stringify all objects.
+    if (Array.isArray(objFromJson)) {
+      return `[${
+        objFromJson
+          .map(obj => `${Utils.stringifyObjectWithNoQuotesOnKeys(obj)}`)
+          .join(',')
+        }]`;
+    }
+    // not an object, stringify using native function
+    if (typeof objFromJson !== 'object' || objFromJson instanceof Date || objFromJson === null) {
+      return JSON.stringify(objFromJson);
+    }
+    // Implements recursive object serialization according to JSON spec
+    // but without quotes around the keys.
+    return `{${
+      Object
+        .keys(objFromJson)
+        .map(key => `${key}:${Utils.stringifyObjectWithNoQuotesOnKeys(objFromJson[key])}`)
+        .join(',')
+      }}`;
+  }
+
+  /**
+   * Convert Any string to Title case from typescript
+   * @param str Any string
+   */
+  static toTitleCase(str) {
+    return str.replace(
+      /\w\S*/g,
+      (txt) => {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
+  }
+
+  
+  static getCookie(cname) {
+    const name = cname + '=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return '';
+  }
 }

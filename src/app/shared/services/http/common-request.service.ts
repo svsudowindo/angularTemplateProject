@@ -12,7 +12,7 @@ export class CommonRequestService {
   constructor(private _frameUrlService: FrameURLService,
     private _commonHttpService: CommonHttpService) { }
 
-  request(requestObject, postBody = null, httpParams: null, customHeaders = null): Observable<any> {
+  request(requestObject, postBody = null, httpParams = null, customHeaders = null): Observable<any> {
     return this.mainRequest(Utils.avoidShallowClone(requestObject), postBody, httpParams, customHeaders);
   }
   mainRequest(requestObject, postBody = null, httpParams: null, customHeaders = null): Observable<any> {
