@@ -29,5 +29,8 @@ export class HeaderInterceptorsService {
       headers: new HttpHeaders(defaultHeaders),
     });
     return next.handle(modifiedReq);
+    // next.handle(request).pipe(catchError(x => this.handleAuthError(x)));
+    // handleAuthError -> should be a promise
+    // should handle your logic for particular errors
   }
 }
