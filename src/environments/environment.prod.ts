@@ -1,7 +1,9 @@
 export const environment = {
-  production: true,
+  production: false,
   logger: {
     // level: Level.LOG,
-    enabled: false
-  }
+    enabled: true
+  },
+  // Any base url of the application which is common for all request
+  BASE_URL: 'https://jsonplaceholder.typicode.com'
 };

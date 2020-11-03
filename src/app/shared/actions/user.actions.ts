@@ -6,5 +6,5 @@ export enum UserActionTypes {
  
 }
 
-export const updateLanguageKey = createAction<UserActionTypes, {}>(UserActionTypes.UpdateLanguageKey, props<{ languageKey: string }>());
-export const resetUser = createAction<UserActionTypes, {}>(UserActionTypes.ResetUser, props<{}>());
+export const updateLanguageKey = createAction<UserActionTypes, {languageKey: string}>(UserActionTypes.UpdateLanguageKey, props<{ languageKey: string }>());
+export const resetUser = createAction<UserActionTypes>(UserActionTypes.ResetUser);

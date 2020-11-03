@@ -99,7 +99,7 @@ export class LoginComponent extends BaseClass implements OnInit {
    * For resetng the user store
    */
   resetUser() {
-    this.userStore.dispatch(resetUser({}));
+    this.userStore.dispatch(resetUser());
   }
 
 }
