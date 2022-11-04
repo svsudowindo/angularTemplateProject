@@ -1,13 +1,8 @@
 import { Component, OnInit, Injector } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { VALIDATION_PATTERNS } from 'src/app/shared/constants/validation-patterns';
 import { BaseClass } from './../../../shared/services/common/baseClass';
-import { AppDialogService } from './../../../shared/components/componentsAsService/app-dialog/app-dialog.service';
-import { AppConfirmService } from './../../../shared/components/componentsAsService/app-confirm/app-confirm.service';
-import { LoginService } from './login.service';
-import { RequestEnums } from '../../../shared/constants/request-enums';
-import { GlobalVariables } from '../../../shared/services/common/globalVariables';
-import { GlobalVariableEnums } from '../../../shared/constants/gloabal-variable-enums';
-import { LoggerService } from 'src/app/shared/services/common/logger.service';
 
 
 @Component({
@@ -16,71 +11,37 @@ import { LoggerService } from 'src/app/shared/services/common/logger.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent extends BaseClass implements OnInit {
+  public loginForm: FormGroup;
 
-  public successMessageStatus: string;
-  public errorMessageStatus: string;
-
-  // once successfull login make can activate service to true
-  constructor(
-    public route: Router,
-    public dialog: AppDialogService,
-    public confirm: AppConfirmService,
-    private loginService: LoginService,
-    private globalVariables: GlobalVariables,
-    private loggerService: LoggerService) {
+  public validation_messages = {
+    'email': [
+      { type: 'required', message: 'Please enter email' },
+      { type: 'pattern', message: 'Please enter valid email' }
+    ],
+    'password': [
+      { type: 'required', message: 'Please enter Password' },
+    ]
+  };
+  constructor(private _formBuilder: FormBuilder, private router: Router) {
     super();
   }
-
-  ngOnInit() {
-    this.loggerService.getLogger(this.constructor.name).info('Message by using logdown js service');
+  ngOnInit(): void {
+    this.initializeForm();
   }
 
-  /**
-   * For navigate to registration page.
-   */
-  register() {
-    this.route.navigate(['registration']);
-  }
-
-  /**
-   * For opening the dialog
-   */
-  openDialog() {
-    this.dialog.openDialog('Hello', 'How are you', 'Ok').subscribe(data => {
-      alert(JSON.stringify(data));
+  initializeForm() {
+    this.loginForm = this._formBuilder.group({
+      email: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern(VALIDATION_PATTERNS.EMAIL)
+      ])],
+      password: ['', Validators.compose([
+        Validators.required
+      ])]
     });
   }
 
-  /**
-   * For opening the confirmation popup.
-   */
-  openConfirm() {
-    this.confirm.confirm('title', 'Enter the confirm message', 'Ok', 'Cancel').subscribe((data) => {
-      // alert(JSON.stringify(data));
-      if (data) {
-        this.successMessageStatus = 'Success';
-      } else {
-        this.errorMessageStatus = 'Error';
-      }
-    });
+  navigateToDashboard() {
+    this.router.navigate(['dashboard']);
   }
-
-  /**
-   * For getting the details
-   */
-  getDetails() {
-    this.successMessageStatus = '';
-    this.errorMessageStatus = '';
-
-    this.globalVariables.setParameterData(GlobalVariableEnums.TOKEN, 'abc');
-    RequestEnums.LOGIN.values.push(1);
-    this.loginService.login(RequestEnums.LOGIN).subscribe((res) => {
-      console.log(res);
-      this.successMessageStatus = 'Success';
-    },
-      ((err) => {
-        this.errorMessageStatus = err;
-      }));
-  }
-
 }

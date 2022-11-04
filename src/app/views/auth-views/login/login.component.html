@@ -1,19 +1,60 @@
-<app-response-message type="SUCCESS" [message]="successMessageStatus"></app-response-message>
-<app-response-message type="ERROR" [message]="errorMessageStatus"></app-response-message>
-<div align="center">
-  <br />
-  <br />
-  <button (click)="register()" mat-raised-button color="primary">register</button>
-  <br />
-  <br />
-  <button mat-raised-button color="warn" (click)="openDialog()">Open Dialog</button>
-  <br />
-  <br />
-  <button mat-raised-button color="primary" (click)="openConfirm()">Confirm Popup</button>
-  <br />
-  <br />
-  <button mat-raised-button color="primary" (click)="getDetails()">Get Details</button>
-  <br />
-  <br />
+<form [formGroup]="loginForm" (ngSubmit)="navigateToDashboard()">
+    <div class="p-t-40">
+        <div class="d-flex justify-content-center">
+            <p class="heading">FannieMae</p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <p class="sub-heading">CPDS</p>
+        </div>
 
-</div>
+        <div class="d-flex justify-content-center p-15">
+            <mat-card style="width: 30rem;">
+                <div>
+                    <p class="fs-5">Login</p>
+                </div>
+                <mat-card-content class="m-b-0">
+                    <div>
+                        <mat-form-field appearance="outline" class="w-100 h-px-65">
+                            <mat-label>User LDAP ID</mat-label>
+                            <input matInput placeholder="User LDAP ID" formControlName="email">
+                            <mat-icon matSuffix>account_circle</mat-icon>
+                        </mat-form-field>
+                        <mat-error *ngIf="isValidField(loginForm, 'email')">
+                            {{ getErrorMessage(loginForm, validation_messages, 'email') }}
+                        </mat-error>
+                    </div>
+
+                    <div>
+                        <mat-form-field appearance="outline" class="w-100 h-px-65">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="Password" formControlName="password">
+                            <mat-icon matSuffix>visibility_off</mat-icon>
+                        </mat-form-field>
+                        <mat-error *ngIf="isValidField(loginForm, 'password')">
+                            {{ getErrorMessage(loginForm, validation_messages, 'password') }}
+                        </mat-error>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <div class="d-flex justify-content-center m-b-20">
+                        <button mat-raised-button color="primary" [disabled]="loginForm.invalid" type="submit">Login</button>
+                    </div>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+        <div class="d-flex justify-content-center p-15">
+            <div class="text-center">
+                <div class="p-b-15">
+                    <p>Credit Portfolio Data Service (CDPS) allows users to retrive model ready loan Profiles</p>
+                    <p>You need to submit <a href="">IAG</a> to access this service</p>
+                </div>
+                <div>
+                    <p>If you have issues/problems please send email <a href="mailto: abc@example.com">CPDS-Support</a>
+                    </p>
+                    <p><b>CPDS - (Acpt)</b> - GUI 5.3</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
