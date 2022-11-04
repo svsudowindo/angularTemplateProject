@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material/material.module';
 
@@ -14,7 +13,6 @@ import { MaterialModule } from './material/material.module';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    FlexLayoutModule,
     MaterialModule,
   ],
   exports: [
@@ -22,7 +20,6 @@ import { MaterialModule } from './material/material.module';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    FlexLayoutModule,
     MaterialModule,
   ]
 })

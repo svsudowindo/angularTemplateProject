@@ -1,4 +1,3 @@
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './../../../shared.module';
 import { NgModule } from '@angular/core';
 import { AppDialogComponent } from './app-dialog.component';
@@ -7,8 +6,7 @@ import { MaterialModule } from 'src/app/shared/modules/predefined/material/mater
 
 @NgModule({
     imports: [
-        MaterialModule,
-        FlexLayoutModule
+        MaterialModule
     ],
     exports: [AppDialogComponent],
     declarations: [AppDialogComponent],
