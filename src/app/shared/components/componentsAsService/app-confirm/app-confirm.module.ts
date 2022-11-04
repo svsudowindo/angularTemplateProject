@@ -1,4 +1,3 @@
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './../../../shared.module';
 import { NgModule } from '@angular/core';
 
@@ -8,8 +7,7 @@ import { MaterialModule } from 'src/app/shared/modules/predefined/material/mater
 
 @NgModule({
     imports: [
-        MaterialModule,
-        FlexLayoutModule
+        MaterialModule
     ],
     exports: [AppConfirmComponent],
     declarations: [AppConfirmComponent],

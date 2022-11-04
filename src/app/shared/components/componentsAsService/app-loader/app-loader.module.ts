@@ -1,4 +1,3 @@
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from 'src/app/shared/modules/predefined/material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,8 +8,7 @@ import { AppLoaderComponent } from './app-loader.component';
 @NgModule({
     imports: [
         CommonModule,
-        MaterialModule,
-        FlexLayoutModule
+        MaterialModule
     ],
     providers: [AppLoaderService],
     declarations: [AppLoaderComponent]
