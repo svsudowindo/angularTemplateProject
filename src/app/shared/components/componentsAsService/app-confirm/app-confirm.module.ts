@@ -7,13 +7,12 @@ import { AppConfirmService } from './app-confirm.service';
 import { MaterialModule } from 'src/app/shared/modules/predefined/material/material.module';
 
 @NgModule({
-  imports: [
-    MaterialModule,
-    FlexLayoutModule
-  ],
-  exports: [AppConfirmComponent],
-  declarations: [AppConfirmComponent],
-  providers: [AppConfirmService],
-  entryComponents: [AppConfirmComponent]
+    imports: [
+        MaterialModule,
+        FlexLayoutModule
+    ],
+    exports: [AppConfirmComponent],
+    declarations: [AppConfirmComponent],
+    providers: [AppConfirmService]
 })
 export class AppConfirmModule { }

@@ -7,13 +7,12 @@ import { AppLoaderService } from './app-loader.service';
 import { AppLoaderComponent } from './app-loader.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MaterialModule,
-    FlexLayoutModule
-  ],
-  providers: [AppLoaderService],
-  declarations: [AppLoaderComponent],
-  entryComponents: [AppLoaderComponent]
+    imports: [
+        CommonModule,
+        MaterialModule,
+        FlexLayoutModule
+    ],
+    providers: [AppLoaderService],
+    declarations: [AppLoaderComponent]
 })
 export class AppLoaderModule { }
