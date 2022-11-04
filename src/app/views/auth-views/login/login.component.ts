@@ -7,10 +7,6 @@ import { LoginService } from './login.service';
 import { RequestEnums } from '../../../shared/constants/request-enums';
 import { GlobalVariables } from '../../../shared/services/common/globalVariables';
 import { GlobalVariableEnums } from '../../../shared/constants/gloabal-variable-enums';
-import Utils from './../../../shared/services/common/utils';
-import { Store } from '@ngrx/store';
-import * as fromUser from '../../../shared/reducers/user.reducer';
-import { updateLanguageKey, resetUser } from 'src/app/shared/actions/user.actions';
 import { LoggerService } from 'src/app/shared/services/common/logger.service';
 
 
@@ -31,7 +27,6 @@ export class LoginComponent extends BaseClass implements OnInit {
     public confirm: AppConfirmService,
     private loginService: LoginService,
     private globalVariables: GlobalVariables,
-    private userStore: Store<fromUser.State>,
     private loggerService: LoggerService) {
     super();
   }
@@ -86,20 +81,6 @@ export class LoginComponent extends BaseClass implements OnInit {
       ((err) => {
         this.errorMessageStatus = err;
       }));
-  }
-
-  /**
-   * For dispatching the events
-   */
-  dispatch() {
-    this.userStore.dispatch(updateLanguageKey({ languageKey: 'English' }));
-  }
-
-  /**
-   * For resetng the user store
-   */
-  resetUser() {
-    this.userStore.dispatch(resetUser());
   }
 
 }

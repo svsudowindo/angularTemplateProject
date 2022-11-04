@@ -47,7 +47,6 @@
     "ts-node": "~10.0.0",
     "tslint": "~6.1.0",
     "typescript": "4.2.3",
-    "@ngrx/router-store": "^12.0.0",
     "@ngrx/store": "^12.0.0",
     "@ngrx/store-devtools": "^12.0.0",
     "ngrx-store-freeze": "^0.2.4",
