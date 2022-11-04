@@ -12,11 +12,12 @@ import { BaseClass } from './../../../shared/services/common/baseClass';
 })
 export class LoginComponent extends BaseClass implements OnInit {
   public loginForm: FormGroup;
+  inputType = 'password';
+  eye_icon = 'visibility_off';
 
   public validation_messages = {
     'email': [
-      { type: 'required', message: 'Please enter email' },
-      { type: 'pattern', message: 'Please enter valid email' }
+      { type: 'required', message: 'Please enter user LDAP ID' }
     ],
     'password': [
       { type: 'required', message: 'Please enter Password' },
@@ -32,8 +33,7 @@ export class LoginComponent extends BaseClass implements OnInit {
   initializeForm() {
     this.loginForm = this._formBuilder.group({
       email: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern(VALIDATION_PATTERNS.EMAIL)
+        Validators.required
       ])],
       password: ['', Validators.compose([
         Validators.required
@@ -43,5 +43,17 @@ export class LoginComponent extends BaseClass implements OnInit {
 
   navigateToDashboard() {
     this.router.navigate(['dashboard']);
+  }
+
+  visibilityChange() {
+    if (this.inputType === 'password') {
+
+      this.inputType = 'text';
+      this.eye_icon = 'visibility';
+    } else {
+
+      this.inputType = 'password';
+      this.eye_icon = 'visibility_off';
+    }
   }
 }

@@ -27,8 +27,8 @@
                     <div>
                         <mat-form-field appearance="outline" class="w-100 h-px-65">
                             <mat-label>Password</mat-label>
-                            <input matInput placeholder="Password" formControlName="password">
-                            <mat-icon matSuffix>visibility_off</mat-icon>
+                            <input [type]="inputType" matInput placeholder="Password" formControlName="password">
+                            <mat-icon matSuffix (click)="visibilityChange()">{{eye_icon}}</mat-icon>
                         </mat-form-field>
                         <mat-error *ngIf="isValidField(loginForm, 'password')">
                             {{ getErrorMessage(loginForm, validation_messages, 'password') }}
