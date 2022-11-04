@@ -1,6 +1,6 @@
 import { AppLoaderService } from './../../../shared/components/componentsAsService/app-loader/app-loader.service';
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, FormControl, Validators, FormGroupDirective, AbstractControl, UntypedFormBuilder } from '@angular/forms';
 import { BaseClass } from '../../../shared/services/common/baseClass';
 import { Registration } from './registration.model';
 import { VALIDATION_PATTERNS } from '../../../shared/constants/validation-patterns';
@@ -14,7 +14,7 @@ import { CustomValidators } from '../../../shared/services/common/validators';
 export class RegistrationComponent extends BaseClass implements OnInit {
 
   @ViewChild('registerationNgForm') registerationNgForm: FormGroupDirective;
-  public registerationForm: FormGroup;
+  public registerationForm: UntypedFormGroup;
   public registrationObject = new Registration();
   public successMessageStatus: string;
   public errorMessageStatus: string;
@@ -54,7 +54,7 @@ export class RegistrationComponent extends BaseClass implements OnInit {
 
   constructor(
     public injector: Injector,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private appLoaderService: AppLoaderService) {
     super();
   }

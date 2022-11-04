@@ -1,9 +1,9 @@
-import { FormControl, AbstractControl } from '@angular/forms';
+import { UntypedFormControl, AbstractControl } from '@angular/forms';
 import Utils from './utils';
 
 export class CustomValidators {
 
-  static validateSpaceCharacters(fc: FormControl) {
+  static validateSpaceCharacters(fc: UntypedFormControl) {
     if (fc.value && fc.value.trim() === '') {
       return ({ validateSpaceCharacters: true });
     } else {
@@ -19,7 +19,7 @@ export class CustomValidators {
   //   }
   // }
 
-  static validateFileType(fc: FormControl) {
+  static validateFileType(fc: UntypedFormControl) {
     if (fc.value && fc.value.trim() === '') {
       const fileName = fc.value;
       const idxDot = fileName.lastIndexOf('.') + 1;
@@ -34,7 +34,7 @@ export class CustomValidators {
     }
   }
 
-  static validateFileSize(fc: FormControl) {
+  static validateFileSize(fc: UntypedFormControl) {
     if (fc.value && fc.value.trim() === '') {
       const fileName = fc.value;
       const idxDot = fileName.lastIndexOf('.') + 1;
@@ -49,7 +49,7 @@ export class CustomValidators {
     }
   }
 
-  static validateArrayValue(fc: FormControl) {
+  static validateArrayValue(fc: UntypedFormControl) {
     if (Utils.isValidInput(fc.value)) {
       return null;
     } else {
@@ -64,7 +64,7 @@ export class CustomValidators {
     return null;
   }
 
-  static noWhitespaceValidator(control: FormControl) {
+  static noWhitespaceValidator(control: UntypedFormControl) {
     const isWhitespace = (control.value || '').trim().length === 0;
     const isValid = !isWhitespace;
     return isValid ? null : { 'whitespace': true };

@@ -3,7 +3,7 @@ import { Injectable, Injector, OnInit } from '@angular/core';
 import Utils from './utils';
 import { GlobalVariables } from './globalVariables';
 import { Router } from '@angular/router';
-import { FormGroup, FormArray, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormArray, UntypedFormControl } from '@angular/forms';
 
 @Injectable()
 export class BaseClass implements OnInit {
@@ -43,16 +43,16 @@ export class BaseClass implements OnInit {
     const index = keys.indexOf(validation_item);
     if (index !== -1) {
       const control = formGroup.get(keys[index]);
-      if (control instanceof FormControl) {
+      if (control instanceof UntypedFormControl) {
         message = this.getControlErrorMessage(control, validation_messages, validation_item);
       }
     } else {
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < keys.length; i++) {
         const control = formGroup.get(keys[i]);
-        if (control instanceof FormGroup) {
+        if (control instanceof UntypedFormGroup) {
           this.getErrorMessage(control, validation_messages, validation_item);
-        } else if (control instanceof FormArray) {
+        } else if (control instanceof UntypedFormArray) {
           message = this.validateFormArray(control, validation_messages, validation_item);
           break;
         }
@@ -62,7 +62,7 @@ export class BaseClass implements OnInit {
   }
   // to validate form array
   // tslint:disable-next-line:variable-name
-  private validateFormArray(formControl: FormArray, validation_messages, validation_item) {
+  private validateFormArray(formControl: UntypedFormArray, validation_messages, validation_item) {
     let message = '';
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < formControl.controls.length; i++) {
